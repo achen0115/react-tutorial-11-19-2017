@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addStudent, fetchStudents } from "../actions/studentActions";
+import Button from "./button";
 
 class App extends Component {
   state = {
@@ -27,14 +28,22 @@ class App extends Component {
             return <li key={index}>{student.name}</li>;
           })} */}
           <input value={this.state.value} onChange={this.handleChange} />
-          <button
+          {/* <button
             onClick={() => {
               addStudent(this.state.value); // not a function, it's an obj
             }}
           >
             Click me
-          </button>
-          <button onClick={fetchStudents}>fetch</button>
+          </button> */}
+          <Button
+            text="Add student"
+            handleClick={() => {
+              addStudent(this.state.value); // not a function, it's an obj
+            }}
+          />
+
+          {/* <button onClick={fetchStudents}>fetch</button> */}
+          <Button text="fetch" handleClick={fetchStudents} />
         </ul>
       </div>
     );
