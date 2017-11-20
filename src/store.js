@@ -1,5 +1,7 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 import StudentReducer from "./reducers/studentReducer";
+// import promiseMiddleware from "redux-promise";
+import thunk from "redux-thunk";
 
 // function counter(state = 0, action) {
 //   switch (action.type) {
@@ -16,6 +18,6 @@ const rootReducer = combineReducers({
   students: StudentReducer
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
 export default store;

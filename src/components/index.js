@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addStudent } from "../actions/studentActions";
+import { addStudent, fetchStudents } from "../actions/studentActions";
 
 class App extends Component {
   state = {
@@ -14,14 +14,14 @@ class App extends Component {
 
   render() {
     console.log(this.props);
-    const { addStudent } = this.props;
+    const { addStudent, fetchStudents } = this.props;
     const { students } = this.props.store;
     return (
       <div className="App">
         <p className="App-intro">Hello World</p>
         <ul>
           {students.map((student, index) => (
-            <li key={index}>{student.name}</li>
+            <li key={index}>{student.firstName}</li>
           ))}
           {/* {students.map((student, index) => {
             return <li key={index}>{student.name}</li>;
@@ -29,11 +29,12 @@ class App extends Component {
           <input value={this.state.value} onChange={this.handleChange} />
           <button
             onClick={() => {
-              addStudent(this.state.value);
+              addStudent(this.state.value); // not a function, it's an obj
             }}
           >
             Click me
           </button>
+          <button onClick={fetchStudents}>fetch</button>
         </ul>
       </div>
     );
@@ -45,4 +46,4 @@ const mapStateToProps = store => {
   return { store };
 };
 
-export default connect(mapStateToProps, { addStudent })(App);
+export default connect(mapStateToProps, { addStudent, fetchStudents })(App);
